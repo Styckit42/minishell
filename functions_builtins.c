@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions_builtins.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcabon <tcabon@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/04 20:27:37 by tcabon            #+#    #+#             */
+/*   Updated: 2016/04/04 20:27:42 by tcabon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int		ft_check_builtins(char *str)
@@ -28,7 +40,18 @@ void	ft_print_env_list(t_list *list)
 	ft_putendl(list->content);
 }
 
-void	ft_del_unset()
+void	ft_del_unset(void *content, size_t content_size)
 {
-	free()
+	(void)content_size;
+	free(content);
+}
+
+int		ft_value_len(char *content)
+{
+	unsigned int i;
+
+	i = 0;
+	while (content[i] != '=')
+		i++;
+	return (i);
 }

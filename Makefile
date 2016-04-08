@@ -6,13 +6,15 @@
 #    By: tcabon <tcabon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/24 18:02:51 by tcabon            #+#    #+#              #
-#    Updated: 2016/02/24 21:26:01 by tcabon           ###   ########.fr        #
+#    Updated: 2016/04/04 20:32:28 by tcabon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = 	main.c \
+		ft_cd.c \
+		ft_cd_error.c \
 		ft_cpyenv.c \
 		ft_launch.c \
 		ft_argcheck.c \
@@ -22,6 +24,7 @@ SRC = 	main.c \
 		ft_unsetenv.c \
 		functions.c \
 		functions_builtins.c \
+		functions_home.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

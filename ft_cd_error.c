@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exec_builtins.c                                 :+:      :+:    :+:   */
+/*   ft_cd_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcabon <tcabon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/04 20:28:55 by tcabon            #+#    #+#             */
-/*   Updated: 2016/04/04 20:28:57 by tcabon           ###   ########.fr       */
+/*   Created: 2016/04/04 20:30:00 by tcabon            #+#    #+#             */
+/*   Updated: 2016/04/04 20:30:01 by tcabon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		ft_exec_builtins(int ret_built, t_list *list, char **arg)
+void	ft_cd_error(char *path, char *argu)
 {
-	int		ret;
+	struct stat			file;
 
-	if (ret_built == 1)
-		exit(1);
-	else if (ret_built == 2 || ret_built == 3 || ret_built == 4)
+	stat(path, &file);
+	if (!S_ISDIR(file.st_mode) && S_ISREG(file.st_mode))
 	{
-		if (ret_built == 2)
-			ft_setenv(list, arg + 1);
-		else if (ret_built == 3)
-			ft_unsetenv(&list, arg + 1);
-		else if (ret_built == 4)
-			ft_env(list);
+		argu++;
+		ft_putstr(ft_strjoin(argu, ": Not a directory.\n"));
 	}
-	else if (ret_built == 5)
+	else if (!S_ISDIR(file.st_mode) && !S_ISREG(file.st_mode))
 	{
-		ft_cd(list, arg + 1);
+		argu++;
+		ft_putstr(ft_strjoin(argu, ": No such file or directory.\n"));
 	}
 }
