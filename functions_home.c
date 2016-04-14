@@ -23,43 +23,27 @@ int		ft_check_home_presence(t_list *list)
 	return (0);
 }
 
-int		ft_check_tilde_presence(char **cmd)
+int		ft_check_access_home(char **cmd)
 {
 	unsigned int i;
 
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i][0] == '~' && cmd[i][1] == '\0')
-			return (1);
-		i++;
-	}
+	i = 1;
+	if (!cmd[i])
+		return (1);
+	else if (ft_strcmp(cmd[i], "~") == 0)
+		return (1);
+	else if (ft_strcmp(cmd[i], "home") == 0)
+		return (1);
 	return (0);
 }
 
-char	**ft_give_home_to_tilde(char **cmd, t_list *list)
+void	ft_give_home_to_cmd(char **cmd, t_list *list)
 {
-	unsigned int i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (ft_strcmp(cmd[i], "~") == 0)
-		{
-			cmd[i] = ft_strdup(list->content);
-			break;
-		}
-		i++;
-	}
 	while (list)
 	{
 		if (ft_strncmp(list->content, "HOME", 4) == 0)
-		{
-			cmd[i] = ft_strdup(ft_strchr(list->content, '=') + 1);
-			printf("test cmd[~] = %s\n", cmd[i]);
-			break;
-		}
+			cmd[1] = ft_strdup(ft_strchr(list->content, '=') + 1);
 		list = list->next;
 	}
-	return (cmd);
+	ft_cd_to_home(list, cmd + 1);
 }

@@ -26,11 +26,11 @@ void		ft_cd(t_list *list, char **arg)
 		ft_putstr("cd: Too many arguments.\n");
 		return ;
 	}
-	/*if (argu == NULL || ft_strcmp(argu, "~") == 0)
+	if (arg[0] == NULL || ft_strcmp(argu, "~") == 0)
 	{
-		ft_cd_to_home(list, )
+		printf("test du ~\n");
 		return ;
-	}*/
+	}
 	if (argu[0] != '/')
 		argu = ft_strjoin("/", argu);
 	printf("argu = %s\n", argu);

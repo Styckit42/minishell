@@ -15,6 +15,10 @@ NAME = minishell
 SRC = 	main.c \
 		ft_cd.c \
 		ft_cd_error.c \
+		ft_cd_hub.c \
+		ft_cd_to_home.c \
+		ft_cd_to_oldpwd.c \
+		ft_cd_to_path.c \
 		ft_cpyenv.c \
 		ft_launch.c \
 		ft_argcheck.c \

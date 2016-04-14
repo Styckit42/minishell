@@ -29,6 +29,6 @@ void		ft_exec_builtins(int ret_built, t_list *list, char **arg)
 	}
 	else if (ret_built == 5)
 	{
-		ft_cd(list, arg + 1);
+		ft_cd_hub(list, arg + 1);
 	}
 }
